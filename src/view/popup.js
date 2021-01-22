@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import AbstractView from "./abstract.js";
+import SmartView from "./smart.js";
 
 const createMovieDetailsPopupTemplate = (movie) => {
 
@@ -124,7 +124,7 @@ const createMovieDetailsPopupTemplate = (movie) => {
 </section>`;
 };
 
-export default class PopupView extends AbstractView {
+export default class PopupView extends SmartView {
   constructor(movie) {
     super();
     this._movie = movie;
