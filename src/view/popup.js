@@ -135,6 +135,8 @@ export default class PopupView extends SmartView {
     this._watchedClickHandler = this._watchedClickHandler.bind(this);
     this._favoritesClickHandler = this._favoritesClickHandler.bind(this);
 
+    this._emojiClickHandler = this._emojiClickHandler.bind(this);
+
   }
 
   getTemplate() {
@@ -176,6 +178,16 @@ export default class PopupView extends SmartView {
   setFavoritesClickHandler(callback) {
     this._callback.popupFavoritesClick = callback;
     this.getElement().querySelector(`.film-details__control-label--favorite`).addEventListener(`click`, this._favoritesClickHandler);
+  }
+
+  _emojiClickHandler(e) {
+    e.preventDefault();
+    console.log(`_emojiClickHandler`);
+  }
+
+  setEmojiClickHandler() {
+    this.getElement().querySelectorAll(`.film-details__emoji-label`)
+      .forEach((emoji) => emoji.addEventListener(`click`, this._emojiClickHandler));
   }
 
 }

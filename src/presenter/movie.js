@@ -32,6 +32,7 @@ export default class Movie {
     this._handleWatchedClick = this._handleWatchedClick.bind(this);
     this._handleFavoritesClick = this._handleFavoritesClick.bind(this);
 
+    this._handleEmojiClick = this._handleEmojiClick.bind(this);
   }
 
   init(movie) {
@@ -54,6 +55,8 @@ export default class Movie {
     this._popupComponent.setWatchlistClickHandler(this._handleWatchlistClick);
     this._popupComponent.setWatchedClickHandler(this._handleWatchedClick);
     this._popupComponent.setFavoritesClickHandler(this._handleFavoritesClick);
+
+    this._popupComponent.setEmojiClickHandler(this._handleEmojiClick);
 
 
     if (prevCardComponent === null) {
@@ -146,6 +149,10 @@ export default class Movie {
 
   _handlePopupCloseButtonClick() {
     this._closePopup();
+  }
+
+  _handleEmojiClick() {
+    console.log(12345);
   }
 
 }
