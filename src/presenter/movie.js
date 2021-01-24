@@ -1,5 +1,6 @@
 import CardView from "../view/card.js";
 import PopupView from "../view/popup.js";
+import CommentView from "../view/comment.js";
 import {RenderPosition, render, replace, remove} from "../utils/render.js";
 
 const Mode = {
@@ -9,8 +10,7 @@ const Mode = {
 
 const Keys = {
   ESC: `Escape` || `Esc`,
-  CTRL: `Control` || `ControlLeft`,
-  ENTER: `Enter`
+  ENTER: `Enter`,
 };
 
 const siteBodyElement = document.querySelector(`body`);
@@ -113,7 +113,7 @@ export default class Movie {
   }
 
   _handleCtrlEnterKeysDown(e) {
-    if (e.key === Keys.CTRL && e.key === Keys.ENTER) {
+    if ((e.ctrlKey || e.metaKey) && (e.key === Keys.ENTER)) {
       e.preventDefault();
       console.log(`контрол энтер`);
     }
