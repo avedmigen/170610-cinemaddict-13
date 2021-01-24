@@ -8,7 +8,9 @@ const Mode = {
 };
 
 const Keys = {
-  ESC: `Escape` || `Esc`
+  ESC: `Escape` || `Esc`,
+  CTRL: `Control` || `ControlLeft`,
+  ENTER: `Enter`
 };
 
 const siteBodyElement = document.querySelector(`body`);
@@ -27,6 +29,7 @@ export default class Movie {
     this._handleShowPopupClick = this._handleShowPopupClick.bind(this);
     this._handlePopupCloseButtonClick = this._handlePopupCloseButtonClick.bind(this);
     this._handleEscKeyDown = this._handleEscKeyDown.bind(this);
+    this._handleCtrlEnterKeysDown = this._handleCtrlEnterKeysDown.bind(this);
 
     this._handleWatchlistClick = this._handleWatchlistClick.bind(this);
     this._handleWatchedClick = this._handleWatchedClick.bind(this);
@@ -89,6 +92,7 @@ export default class Movie {
     render(siteBodyElement, this._popupComponent, RenderPosition.BEFOREEND);
     siteBodyElement.classList.add(`hide-overflow`);
     document.addEventListener(`keydown`, this._handleEscKeyDown);
+    document.addEventListener(`keydown`, this._handleCtrlEnterKeysDown);
     this._changeMode();
     this._mode = Mode.POPUP;
   }
@@ -97,6 +101,7 @@ export default class Movie {
     this._popupComponent.getElement().remove();
     siteBodyElement.classList.remove(`hide-overflow`);
     document.removeEventListener(`keydown`, this._handleEscKeyDown);
+    document.removeEventListener(`keydown`, this._handleCtrlEnterKeysDown);
     this._mode = Mode.DEFAULT;
   }
 
@@ -104,6 +109,13 @@ export default class Movie {
     if (e.key === Keys.ESC) {
       e.preventDefault();
       this._closePopup();
+    }
+  }
+
+  _handleCtrlEnterKeysDown(e) {
+    if (e.key === Keys.CTRL && e.key === Keys.ENTER) {
+      e.preventDefault();
+      console.log(`контрол энтер`);
     }
   }
 
@@ -152,7 +164,7 @@ export default class Movie {
   }
 
   _handleEmojiClick() {
-    console.log(12345);
+    console.log(`_handleEmojiClick`);
   }
 
 }
